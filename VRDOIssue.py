@@ -62,3 +62,4 @@ for x in f:
     f2.write(x+","+EMMAIssue1+","+InterestRate+","+MaturityDate+","+DatedDate+","+PrincipalAmount+","+ResetPeriod+","+
              MaximumRate+","+MinimumRate+","+ClosingDate+"\n")
     browser.close()
+print("Done")

@@ -44,3 +44,4 @@ for x in f:
        f2.write(x+","+LiquidityFacility[i]+"\n")
 
     browser.close()
+print("Done")

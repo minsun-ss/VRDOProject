@@ -81,3 +81,4 @@ for x in f:
             f2.write(x+","+ResetDate+","+InterestRate+","+RateType+","+RateEffectiveDate+","+AggregateParAmountBankBonds+","+AggregateParAmountBankBondsInvestorsAndRemarketingAgent+"\n")
 
     browser.close()
+print("Done")
