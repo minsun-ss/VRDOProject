@@ -26,7 +26,6 @@ LiquidityFacility = []
 
 print(len(getValues))
 for j in range(len(getValues)):
-    #print(getValues[j].text)
     if getValues[j].text == "Liquidity Facility:":
         print("Yes")
         lf = getValues[j+1].text+","+getValues[j+3].text+","+getValues[j+5].text
