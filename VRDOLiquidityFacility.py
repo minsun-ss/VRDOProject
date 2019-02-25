@@ -8,7 +8,7 @@ filename = filename+".txt"
 f = open(filename, "r")
 f2 = open(outputname, "a+")
 for x in f:
-    x = x.rstrip("\n\r") #strip out trailing linebreaks
+    x = x.rstrip("\n\r")  # strip out trailing linebreaks
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 

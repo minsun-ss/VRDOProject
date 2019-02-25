@@ -8,11 +8,11 @@ filename = filename+".txt"
 f = open(filename, "r")
 f2 = open(outputname, "a+")
 for x in f:
-    x = x.rstrip("\n\r") #strip out trailing linebreaks
+    x = x.rstrip("\n\r")  # strip out trailing linebreaks
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 
-    #open up emma, agree to terms of use, turn on headless mode so I don't have to see Firefox windows all day
+    # open up emma, agree to terms of use, turn on headless mode so I don't have to see Firefox windows all day
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
@@ -20,8 +20,8 @@ for x in f:
     getin = browser.find_elements_by_class_name("yesButton")
     getin[0].click()
 
-    #initialize variables
-    EMMAIssue1 = ""
+    # initialize variables
+    #EmmaIssue1
     InterestRate = 0
     MaturityDate = ""
     DatedDate = ""
@@ -38,10 +38,8 @@ for x in f:
     showMore = browser.find_element_by_id("lnkMoreInfo")
     showMore.click()
     results = browser.page_source
-    #print(results)
 
     innerHTML = browser.execute_script("return document.body.innerHTML")
-    #print(innerHTML)
     getTitle = browser.find_elements_by_xpath("//span[@help='Click to view issue details']")
     EMMAIssue1 = str(getTitle[0].text)
 
@@ -58,8 +56,9 @@ for x in f:
             ResetPeriod = getValues[i+2].text
             MaximumRate = getValues[i+3].text
             MinimumRate = getValues[i+4].text
-        elif getValues[i].text =="Closing Date:":
+        elif getValues[i].text == "Closing Date:":
             ClosingDate = getValues[i+1].text
 
-    f2.write(x+","+EMMAIssue1+","+InterestRate+","+MaturityDate+","+DatedDate+","+PrincipalAmount+","+ResetPeriod+","+MaximumRate+","+MinimumRate+","+ClosingDate+"\n")
+    f2.write(x+","+EMMAIssue1+","+InterestRate+","+MaturityDate+","+DatedDate+","+PrincipalAmount+","+ResetPeriod+","+
+             MaximumRate+","+MinimumRate+","+ClosingDate+"\n")
     browser.close()
