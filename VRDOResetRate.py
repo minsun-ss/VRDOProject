@@ -36,33 +36,30 @@ getValues = browser.find_elements_by_xpath("//tbody/tr[@role='row']")
 
 for j in range(len(getValues)):
     singlereset = getValues[j].get_attribute('innerHTML')
-    # print(singlereset)
-    singleresetlist = singlereset.split("<td")
-    #
-    # skip first item, 2nd item is reset date
+    soup = BeautifulSoup(singlereset, 'html.parser')
+    singleresetlist = soup.find_all('td')
 
-    #print(singleresetlist[1])
-    singleresetlist[1] = singleresetlist[1].replace("</td>", "")
-    singleresetlist[1] = singleresetlist[1][22:]
-    ResetDate = singleresetlist[1]
+    #Reset Date is first in the td list
+    ResetDate = singleresetlist[0].text
 
-    #print(singleresetlist[2])
-    singleresetlist[2] = singleresetlist[2].replace("</td>", "")
-    singleresetlist[2] = singleresetlist[2][13:]
-    InterestRate = singleresetlist[2]
+    #Interest Rate is second in the list
+    InterestRate = singleresetlist[1].text
 
-    #print(singleresetlist[3])
-    a = singleresetlist[3].split
-    soup = BeautifulSoup(singleresetlist[3], 'html.parser')
-    taglist = soup.find_all(re.compile('img'))
+    #Reset Date is third
+    soup2 = BeautifulSoup(str(singleresetlist[2]), 'html.parser')
+    taglist = soup2.find_all('img')
     try:
         RateType = taglist[0]['help']
-        print(RateType)
     except:
-        print("nope, nothing")
         RateType = ""
-    #print(a)
 
+    #Rate effective date s third in the list
+    RateEffectiveDate = singleresetlist[3].text
+
+    print(singleresetlist[4])
+    #print(singleresetlist[4])
+    #soup = BeautifulSoup(singleresetlist[4], 'html.parser')
+    #print(soup.text)
 
 
 browser.close()
