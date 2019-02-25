@@ -36,13 +36,13 @@ for j in range(len(getValues)):
     soup = BeautifulSoup(singlereset, 'html.parser')
     singleresetlist = soup.find_all('td')
 
-    #Reset Date is first in the td list
+    # Reset Date is first in the td list
     ResetDate = singleresetlist[0].text
 
-    #Interest Rate is second in the list
+    # Interest Rate is second in the list
     InterestRate = singleresetlist[1].text
 
-    #Reset Date is third
+    # Reset Date is third
     soup2 = BeautifulSoup(str(singleresetlist[2]), 'html.parser')
     taglist = soup2.find_all('img')
     try:
@@ -62,6 +62,5 @@ for j in range(len(getValues)):
     # try to print only those valid lines
     if ResetDate != "":
         print(ResetDate+","+InterestRate+","+RateType+","+RateEffectiveDate+","+AggregateParAmountBankBonds+","+AggregateParAmountBankBondsInvestorsAndRemarketingAgent)
-
 
 browser.close()
