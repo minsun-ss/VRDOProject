@@ -1,13 +1,10 @@
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
 from bs4 import BeautifulSoup
-import re
 import time
-
 
 browser = webdriver.Firefox()
 browser.get("https://emma.msrb.org/Security/Details/A129CCBA06E6DF60CDAD51032BC0B3CF9")
-
 
 getin = browser.find_elements_by_class_name("yesButton")
 getin[0].click()
@@ -53,13 +50,18 @@ for j in range(len(getValues)):
     except:
         RateType = ""
 
-    #Rate effective date s third in the list
+    #Rate effective date is fourth in the list
     RateEffectiveDate = singleresetlist[3].text
 
-    print(singleresetlist[4])
-    #print(singleresetlist[4])
-    #soup = BeautifulSoup(singleresetlist[4], 'html.parser')
-    #print(soup.text)
+    # Bank Bonds are fifth in the list
+    AggregateParAmountBankBonds = singleresetlist[4].text
+
+    # Non bank bonds are last
+    AggregateParAmountBankBondsInvestorsAndRemarketingAgent = singleresetlist[5].text
+
+    # try to print only those valid lines
+    if ResetDate != "":
+        print(ResetDate+","+InterestRate+","+RateType+","+RateEffectiveDate+","+AggregateParAmountBankBonds+","+AggregateParAmountBankBondsInvestorsAndRemarketingAgent)
 
 
 browser.close()
