@@ -8,9 +8,11 @@ filename = filename+".txt"
 f = open(filename, "r")
 f2 = open(outputname, "a+")
 for x in f:
+    x = x.rstrip("\n\r") #strip out trailing linebreaks
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 
+    # sets up headless mode so I don't have to deal with Firefox repeatedly opening in my bloody background all day
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
@@ -39,6 +41,6 @@ for x in f:
             LiquidityFacility.append(lf)
 
     for i in range(len(LiquidityFacility)):
-       f2.write(LiquidityFacility[i]+"\n")
+       f2.write(x+","+LiquidityFacility[i]+"\n")
 
     browser.close()

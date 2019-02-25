@@ -8,10 +8,11 @@ filename = filename+".txt"
 f = open(filename, "r")
 f2 = open(outputname, "a+")
 for x in f:
+    x = x.rstrip("\n\r") #strip out trailing linebreaks
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 
-    #open up emma, agree to terms of use...
+    #open up emma, agree to terms of use, turn on headless mode so I don't have to see Firefox windows all day
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
@@ -60,5 +61,5 @@ for x in f:
         elif getValues[i].text =="Closing Date:":
             ClosingDate = getValues[i+1].text
 
-    f2.write(EMMAIssue1+","+InterestRate+","+MaturityDate+","+DatedDate+","+PrincipalAmount+","+ResetPeriod+","+MaximumRate+","+MinimumRate+","+ClosingDate+"\n")
+    f2.write(x+","+EMMAIssue1+","+InterestRate+","+MaturityDate+","+DatedDate+","+PrincipalAmount+","+ResetPeriod+","+MaximumRate+","+MinimumRate+","+ClosingDate+"\n")
     browser.close()
