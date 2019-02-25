@@ -1,8 +1,8 @@
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
-filename = input("What is the filename with the cusips?")
-outputname = input("Where do you want the results?")
+filename = input("What is the filename with the cusips? ")
+outputname = input("Where do you want the results? ")
 filename = filename+".txt"
 
 f = open(filename, "r")

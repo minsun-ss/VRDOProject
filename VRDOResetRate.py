@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 import time
 
 
-filename = input("What is the filename with the cusips?")
-outputname = input("Where do you want the results?")
+filename = input("What is the filename with the cusips? ")
+outputname = input("Where do you want the results? ")
 filename = filename+".txt"
 
 
