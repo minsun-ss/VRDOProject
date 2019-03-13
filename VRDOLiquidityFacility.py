@@ -12,7 +12,7 @@ for x in f:
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 
-    # sets up headless mode so I don't have to deal with Firefox repeatedly opening in my bloody background all day
+    # sets up headless mode to run in background
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
@@ -20,17 +20,13 @@ for x in f:
     getin = browser.find_elements_by_class_name("yesButton")
     getin[0].click()
 
-    #initialize variables
-
-    #this opens up the "Get More Info" link on the EMMA VRDO page
+    #agree to EMMA's terms of use
     showMore = browser.find_element_by_id("lnkMoreInfo")
     showMore.click()
     results = browser.page_source
     #print(results)
 
 
-    # not sure if I need these if I'm just stripping out the main parts of a deal - this might be better used when
-    # stripping data for liquidity facilities
     getValues = browser.find_elements_by_xpath("//div[@id='divCollapsible']/ul/li/span")
     # set up a chain
     LiquidityFacility = []

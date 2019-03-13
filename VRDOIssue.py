@@ -12,16 +12,15 @@ for x in f:
     url = "http://emma.msrb.org/Security/Details/"+x
     print("Working on: "+x)
 
-    # open up emma, agree to terms of use, turn on headless mode so I don't have to see Firefox windows all day
+    # open up emma, agree to terms of use, turn on headless mode so it runs in background
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
     browser.get(url)
-    getin = browser.find_elements_by_class_name("yesButton")
+    getin = browser.find_elements_by_class_name("yesButton") # say yes to emma!
     getin[0].click()
 
-    # initialize variables
-    #EmmaIssue1
+    # initialize variables - not necessary but useful to see together
     InterestRate = 0
     MaturityDate = ""
     DatedDate = ""

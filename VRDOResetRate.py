@@ -18,16 +18,18 @@ for x in f:
     url = "http://emma.msrb.org/Security/Details/" + x
     print("Working on: " + x)
 
+    # headless mode
     opts = Options()
     opts.headless = True
     browser = webdriver.Firefox(options=opts)
     browser.get(url)
 
+    # agree to EMMA's Terms of Use
     getin = browser.find_elements_by_class_name("yesButton")
     getin[0].click()
     time.sleep(5)
 
-    #initialize variables
+    #initialize variables - useful to see together
     ResetDate = ""
     InterestRate = ""
     RateType = ""
@@ -44,7 +46,6 @@ for x in f:
     select.select_by_visible_text("100")
 
     results = browser.page_source
-    #print(results)
 
     getValues = browser.find_elements_by_xpath("//tbody/tr[@role='row']")
 
@@ -67,7 +68,7 @@ for x in f:
         except:
             RateType = ""
 
-        #Rate effective date is fourth in the list
+        # Rate effective date is fourth in the list
         RateEffectiveDate = singleresetlist[3].text
 
         # Bank Bonds are fifth in the list
